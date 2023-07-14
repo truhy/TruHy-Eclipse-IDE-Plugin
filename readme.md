@@ -50,10 +50,10 @@ Steps to export a deployable plugin as a repository:
 ## Helpful references
 
 Eclipse documentation:
-[How to add project templates to CDT](https://help.eclipse.org/2023-06/index.jsp?topic=%2Forg.eclipse.cdt.doc.isv%2Fguide%2FprojectTemplateEngine%2FHowtodeveloptemplates.html&anchor=howto%2edevelop%2etemplates)
-[What's New in CDT Build System 4.0](https://help.eclipse.org/2023-06/index.jsp?topic=%2Forg.eclipse.cdt.doc.isv%2Fguide%2Fcdt_build_system%2Fwhats_new%2F4.0%2Fwhats_new_CBS_40.html&cp%3D13_0_3)
+- [How to add project templates to CDT](https://help.eclipse.org/2023-06/index.jsp?topic=%2Forg.eclipse.cdt.doc.isv%2Fguide%2FprojectTemplateEngine%2FHowtodeveloptemplates.html&anchor=howto%2edevelop%2etemplates)
+- [What's New in CDT Build System 4.0](https://help.eclipse.org/2023-06/index.jsp?topic=%2Forg.eclipse.cdt.doc.isv%2Fguide%2Fcdt_build_system%2Fwhats_new%2F4.0%2Fwhats_new_CBS_40.html&cp%3D13_0_3)
 
 Useful source codes:
-[CDT processes source code](https://github.com/eclipse-cdt/cdt/tree/main/core/org.eclipse.cdt.core/templateengine/org/eclipse/cdt/core/templateengine/process/processes)
-[Embed CDT templates](https://github.com/eclipse-embed-cdt/eclipse-plugins/tree/master/plugins)
-[Embed CDT processes](https://github.com/eclipse-embed-cdt/eclipse-plugins/tree/master/plugins/org.eclipse.embedcdt.templates.core/src/org/eclipse/embedcdt/templates/core/processes)
+- [CDT processes source code](https://github.com/eclipse-cdt/cdt/tree/main/core/org.eclipse.cdt.core/templateengine/org/eclipse/cdt/core/templateengine/process/processes)
+- [Embed CDT templates](https://github.com/eclipse-embed-cdt/eclipse-plugins/tree/master/plugins)
+- [Embed CDT processes](https://github.com/eclipse-embed-cdt/eclipse-plugins/tree/master/plugins/org.eclipse.embedcdt.templates.core/src/org/eclipse/embedcdt/templates/core/processes)
