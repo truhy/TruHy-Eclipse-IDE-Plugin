@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+	Copyright (c) 2023 Truong Hy.
+-->
+
+<plugin>
+	<!--
+		If you want it selectable for only C project wizard then use filterPattern=".*gcc"
+		If you want it selectable for both C/C++ project wizard then use filterPattern=".*g[c\+][c\+]"
+	-->
+	<extension point="org.eclipse.cdt.core.templates">
+		<template
+			filterPattern=".*g[c\+][c\+]"
+			id="cdt.templates.socfpga.generic"
+			location="$nl$/templates/socfpga-generic-project/template.xml"
+			projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+		</template>
+	
+		<template
+			filterPattern=".*g[c\+][c\+]"
+			id="cdt.templates.socfpga.hello"
+			location="$nl$/templates/socfpga-hello-project/template.xml"
+			projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+		</template>
+	</extension>
+	
+	<!-- Associate new template with ilg.gnuarmeclipse.managedbuild.cross.toolchain.base -->
+	<extension point="org.eclipse.cdt.core.templateAssociations">
+		<template id="cdt.templates.socfpga.generic">
+			<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.base">
+			</toolChain>
+		</template>
+	
+		<template id="cdt.templates.socfpga.hello">
+			<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.base">
+			</toolChain>
+		</template>
+	</extension>
+	
+	<!-- Create new build types -->
+	<extension point="org.eclipse.cdt.managedbuilder.core.buildProperties">
+		<!-- Add a new build type -->
+		<propertyValue
+			property="org.eclipse.cdt.build.core.buildType"
+			id="org.eclipse.cdt.build.core.buildType.debugBySemihosting"
+			name="%BuildProperty.value.name.debugBySemihosting"/>
+			
+		<!-- Add a new build type -->
+		<propertyValue
+			property="org.eclipse.cdt.build.core.buildType"
+			id="org.eclipse.cdt.build.core.buildType.debugByUart"
+			name="%BuildProperty.value.name.debugByUart"/>
+    </extension>
+	
+	<!-- Create new build configurations -->
+	<extension point="org.eclipse.cdt.managedbuilder.core.buildDefinitions">
+		<projectType
+			buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe"
+			id="ilg.gnuarmeclipse.managedbuild.cross.target.elf.socfpga"
+			isAbstract="false"
+			isTest="false">
+
+			<!--
+				Add a new build configuration.
+				
+				There is a CDT bug which prevents this from working!
+				When you test this plugin extension, the generated .cproject gives an orphaned error when you view the project properties build C/C++ settings.
+				The problem is that the parent attribute is not kept - if you look inside the .cproject with a text editor and search for this same configuration
+				tag it has changed to "ilg.gnuarmeclipse.managedbuild.cross.config.elf.debugBySemihosting", which is the id, but it should be "ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug"
+			-->
+            <configuration
+				artifactExtension="elf"
+				buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debugBySemihosting"
+				cleanCommand="${cross_rm} -rf"
+				id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debugBySemihosting"
+				name="DebugBySemihosting"
+				parent="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug">
+				<toolChain
+					id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debugBySemihosting"
+					superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.base"
+					targetTool="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker;ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker">
+				</toolChain>
+            </configuration>
+            
+            <!--
+				Add a new build configuration.
+				
+				There is a CDT bug which prevents this from working!
+				When you test this plugin extension, the generated .cproject gives an orphaned error when you view the project properties build C/C++ settings.
+				The problem is that the parent attribute is not kept - if you look inside the .cproject with a text editor and search for this same configuration
+				tag it has changed to "ilg.gnuarmeclipse.managedbuild.cross.config.elf.debugByUart", which is the id, but it should be "ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug"
+			-->
+            <configuration
+				artifactExtension="elf"
+				buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debugByUart"
+				cleanCommand="${cross_rm} -rf"
+				id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debugByUart"
+				name="DebugByUART"
+				parent="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug">
+				<toolChain
+					id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debugByUart"
+					superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.base"
+					targetTool="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker;ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker">
+				</toolChain>
+            </configuration>
+        </projectType>
+	</extension>
+</plugin>

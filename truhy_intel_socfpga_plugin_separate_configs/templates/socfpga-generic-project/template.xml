@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template
+	type="ProjTempl"
+	version="1.0"
+	supplier="Truong Hy"
+	revision="1.0"
+	author="Truong Hy"
+	copyright=""
+	id="socFpga.generic.project"
+	label="%socFpga.template.label"
+	description="%socFpga.template.description"
+	help="help.html">
+
+	<!--
+		===================================================================
+		Setup the desired wizard dialog settings for your plugin extension.
+		===================================================================
+	-->
+
+	<!--
+		SocFPGA series, folder paths and files wizard dialog.
+	-->
+	<property-group
+		id="socFpga.group.folders"
+		label="%socFpga.group.folders.label"
+		description="%socFpga.group.folders.description"
+		type="PAGES-ONLY"
+		help="help.html">
+		
+		<property
+			id="socFpga.series"
+			label="%socFpga.series.label"
+			description="%socFpga.series.description"
+			hidden="false"
+			type="select"
+			default="CycloneV"
+			mandatory="true"
+			persist="false">
+			<item
+				value="CycloneV"
+				label="Cyclone V series" />
+		</property>
+		
+		<property
+			id="socFpga.ldScriptFile"
+			label="%socFpga.ldScriptFile.label"
+			description="%socFpga.ldScriptFile.description"
+			hidden="false"
+			type="browse"
+			default="cvav-ddr.ld"
+			mandatory="true"
+			persist="false" />
+			
+		<property
+			id="socFpga.ldScriptDstDir"
+			label="%socFpga.ldScriptDstDir.label"
+			description="%socFpga.ldScriptDstDir.description"
+			hidden="false"
+			type="browsedir"
+			default="ldscript"
+			mandatory="true"
+			persist="false" />
+		
+		<property
+			id="socFpga.hwlibDir"
+			label="%socFpga.hwlibDir.label"
+			description="%socFpga.hwlibDir.description"
+			hidden="false"
+			type="browsedir"
+			default="hwlib"
+			mandatory="true"
+			persist="false" />
+			
+		<property
+			id="socFpga.bspGeneratedDir"
+			label="%socFpga.bspGeneratedDir.label"
+			description="%socFpga.bspGeneratedDir.description"
+			hidden="false"
+			type="browsedir"
+			default="bsp_generated"
+			mandatory="true"
+			persist="false" />
+			
+		<property
+			id="socFpga.ubootSplFile"
+			label="%socFpga.ubootSplFile.label"
+			description="%socFpga.ubootSplFile.description"
+			hidden="false"
+			type="browse"
+			default="u-boot-spl-nocache"
+			mandatory="true"
+			persist="false" />
+			
+		<property
+			id="socFpga.isOpenFile"
+			label="%socFpga.isOpenFile.label"
+			description="%socFpga.isOpenFile.description"
+			hidden="false"
+			type="boolean"
+			default="true"
+			mandatory="true"
+			persist="false" />
+		
+		<property
+			id="socFpga.fileExtension"
+			label="Source file extension"
+			description="Will be set to cpp for ccnature"
+			hidden="true"
+			default="c"
+			mandatory="true"
+			persist="false" />
+
+		<property
+			id="socFpga.pluginTemplatesDir"
+			label="Plugin templates files"
+			description="Will be set to ...templates.core/templates folder"
+			hidden="true"
+			default="socFpga.pluginTemplatesDir"
+			mandatory="true"
+			persist="false" />
+	</property-group>
+	
+	<!--
+		Compiler settings wizard dialog.
+	-->
+	<property-group
+		id="socFpga.group.settings"
+		label="%socFpga.group.settings.label"
+		description="%socFpga.group.settings.description"
+		type="PAGES-ONLY"
+		help="help.html">
+		
+		<property
+			id="socFpga.targetInstructionSet"
+			label="%socFpga.targetInstructionSet.label"
+			description="%socFpga.targetInstructionSet.description"
+			hidden="false"
+			type="select"
+			default="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset.default"
+			persist="false">
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset.thumb"
+				label="Thumb" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset.arm"
+				label="Arm" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset.default"
+				label="Default" />
+		</property>
+		
+		<property
+			id="socFpga.targetFloat"
+			label="%socFpga.targetFloat.label"
+			description="%socFpga.targetFloat.description"
+			hidden="false"
+			type="select"
+			default="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.hard"
+			persist="true">
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.soft"
+				label="Soft library" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.softfp"
+				label="SoftFP (hard through soft library)" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.hard"
+				label="FP (hard)" />
+		</property>
+		
+		<property
+			id="socFpga.targetFloatHardUnit"
+			label="%socFpga.targetFloatHardUnit.label"
+			description="%socFpga.targetFloatHardUnit.description"
+			hidden="false"
+			type="select"
+			default="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.neon"
+			persist="true">
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.neon"
+				label="Neon" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.neonvfpv3"
+				label="Neon + vfpv3" />
+		</property>
+		
+		<property
+			id="socFpga.targetUnalignedAccess"
+			label="%socFpga.targetUnalignedAccess.label"
+			description="%socFpga.targetUnalignedAccess.description"
+			hidden="false"
+			type="select"
+			default="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.unalignedaccess.disabled"
+			persist="true">
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.unalignedaccess.enabled"
+				label="Enabled" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.unalignedaccess.disabled"
+				label="Disabled" />
+			<item
+				value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.unalignedaccess.default"
+				label="Default" />
+		</property>
+		
+		<property
+			id="socFpga.createFlashImage"
+			label="%socFpga.createFlashImage.label"
+			description="%socFpga.createFlashImage.description"
+			hidden="false"
+			type="boolean"
+			default="true"
+			persist="true" />
+	</property-group>
+
+	<!--
+		==========================================================================================================
+		Call processes (functions from Eclipse and plugins) to create the desired process flow for your extension.
+		==========================================================================================================
+	-->
+
+	<!-- Note: the redundant 'condition="1==1"' is a workaround to control the 
+		evaluation order. Without it, processes are evaluated after all ifs. -->
+
+	<!--
+		This is for the case when selecting a generic new project without cnature. 
+		We force the "New Managed Project" to "C Managed Build" project in our plugin extension.
+	-->
+	<if condition="1==1">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.NewManagedProject">
+			<simple
+				name="name"
+				value="$(projectName)" />
+			<simple
+				name="artifactExtension"
+				value="elf" />
+			<simple
+				name="isCProject"
+				value="true" />
+		</process>
+	</if>
+
+	<if condition="1==1">
+		<!-- If ccnature (C++ nature) is selected then set user property fileExtension to cpp -->
+		<process type="org.eclipse.embedcdt.templates.core.SetPropertyIfHasNature">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="natureString" value="org.eclipse.cdt.core.ccnature" />
+			<simple name="propertyName" value="socFpga.fileExtension" />
+			<simple name="propertyValue" value="cpp" />
+		</process>
+
+		<!-- Force add ccnature -->
+		<!--
+		<process type="org.eclipse.cdt.core.AddNature">
+			<simple
+				name="projectName"
+				value="$(projectName)" />
+			<simple
+				name="natureId"
+				value="org.eclipse.cdt.core.ccnature" />
+		</process>
+		-->
+
+		<!--
+			We don't need anything from there so this is commented out.
+			Assigns socFpga.pluginTemplatesDir property to the template folder path of the plugin resource that you're extending.
+			It enables you to access the existing template files from the plugin you are importing.
+		-->
+		<!-- Not used
+		<process type="org.eclipse.embedcdt.templates.core.SetPropertyToPluginResource">
+			<simple name="pluginId" value="org.eclipse.embedcdt.templates.core" />
+			<simple name="relativePath" value="templates" />
+			<simple name="propertyName" value="socFpga.pluginTemplatesDir" />
+		</process>
+		-->
+	</if>
+	
+	<!--
+		Copy entire bsp_generated folder.
+		The replaceable=false copies files as binary.
+	-->
+	<if condition="1==1">
+		<!-- include -->
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalCopyFoldersRecursive">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(socFpga.bspGeneratedDir)" />
+					<simple name="target" value="bsp_generated" />
+					<simple name="pattern" value=".*" />
+					<simple name="replaceable" value="false" />
+					<simple name="recursive" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Copy entire util folder.
+		The replaceable=false copies files as binary.
+	-->
+	<if condition="1==1">
+		<!-- include -->
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalCopyFoldersRecursive">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="util" />
+					<simple name="target" value="util" />
+					<simple name="pattern" value=".*" />
+					<simple name="replaceable" value="false" />
+					<simple name="recursive" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Copy entire Intel/Altera hwlib folder.
+		The replaceable=false copies files as binary.
+	-->
+	<if condition="1==1">
+		<!-- include -->
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalCopyFoldersRecursive">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(socFpga.hwlibDir)" />
+					<simple name="target" value="hwlib" />
+					<simple name="pattern" value=".*" />
+					<simple name="replaceable" value="false" />
+					<simple name="recursive" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Copy some files and create target subfolders if not exists.
+		The replaceable=false copies files as binary.
+	-->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.core.AddFiles">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="files">
+				<element>
+					<simple name="source" value="main.c" />
+					<simple name="target" value="main.c" />
+					<simple name="replaceable" value="false" />
+				</element>
+				
+				<element>
+					<simple name="source" value="$(socFpga.ubootSplFile)" />
+					<simple name="target" value="$(socFpga.ubootSplFile)" />
+					<simple name="replaceable" value="false" />
+				</element>
+				
+				<element>
+					<simple name="source" value="ldscript/$(socFpga.ldScriptFile)" />
+					<simple name="target" value="$(socFpga.ldScriptDstDir)/$(socFpga.ldScriptFile)" />
+					<simple name="replaceable" value="false" />
+				</element>
+				
+				<element>
+					<simple name="source" value="openocd-gdb-debug.launch.txt" />
+					<simple name="target" value="$(projectName)-debug.launch" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set global target processor options.
+	-->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.managedbuilder.core.SetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.family" />
+					<simple name="value" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a9" />
+					<simple name="path" value="" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset" />
+					<simple name="value" value="$(socFpga.targetInstructionSet)" />
+					<simple name="path" value="" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi" />
+					<simple name="value" value="$(socFpga.targetFloat)" />
+					<simple name="path" value="" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit" />
+					<simple name="value" value="$(socFpga.targetFloatHardUnit)" />
+					<simple name="path" value="" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.unalignedaccess" />
+					<simple name="value" value="$(socFpga.targetUnalignedAccess)" />
+					<simple name="path" value="" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createflash" />
+					<simple name="value" value="$(socFpga.createFlashImage)" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set global flash image options.
+	-->
+	<if condition="$(socFpga.createFlashImage)==true">
+		<!-- Set create flash file to binary format -->
+		<process type="org.eclipse.cdt.managedbuilder.core.SetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.createflash.choice" />
+					<simple name="value" value="ilg.gnuarmeclipse.managedbuild.cross.option.createflash.choice.binary" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set global symbols.
+	-->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.defs" />
+					<simple-array name="values">
+						<element value="soc_cv_av" />
+						<element value="CYCLONEV" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set global include search paths.
+	-->
+	<if condition="1==1">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;${workspace_loc:/${ProjName}/bsp_generated}&quot;" />
+						<element value="&quot;${workspace_loc:/${ProjName}/util/include}&quot;" />
+						<element value="&quot;${workspace_loc:/${ProjName}/hwlib/include}&quot;" />
+						<element value="&quot;${workspace_loc:/${ProjName}/hwlib/include/soc_cv_av}&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set global linker options.
+	-->
+	<if condition="1==1">
+		<!-- Set linker file -->
+		<process type="org.eclipse.cdt.managedbuilder.core.SetMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.scriptfile" />
+					<simple-array name="values">
+						<element value="&quot;${workspace_loc:/${ProjName}/$(socFpga.ldScriptDstDir)/$(socFpga.ldScriptFile)}&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+		
+		<!-- Set "Do not use syscalls" -->
+		<process type="org.eclipse.cdt.managedbuilder.core.SetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.usenewlibnosys" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set DebugBySemihosting specific options.
+	-->
+	<if condition="1==1">
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" />
+					<simple name="value" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.none" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugBySemihosting" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.level" />
+					<simple name="value" value="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.level.max" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugBySemihosting" />
+				</element>
+			</complex-array>
+		</process>
+	
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.defs" />
+					<simple-array name="values">
+						<element value="SEMIHOSTING" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugBySemihosting" />
+				</element>
+			</complex-array>
+		</process>
+	
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.libs" />
+					<simple-array name="values">
+						<element value="rdimon" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugBySemihosting" />
+				</element>
+			</complex-array>
+		</process>
+		
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.other" />
+					<simple name="value" value="--specs=rdimon.specs" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugBySemihosting" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set DebugByUART specific options.
+	-->
+	<if condition="1==1">
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" />
+					<simple name="value" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.none" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugByUart" />
+				</element>
+				
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.level" />
+					<simple name="value" value="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.level.max" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugByUart" />
+				</element>
+			</complex-array>
+		</process>
+	
+		<process type="org.eclipse.embedcdt.templates.core.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.defs" />
+					<simple-array name="values">
+						<element value="TRU_PRINTF_UART" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debugByUart" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	
+	<!--
+		Set exclude files.
+	-->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.managedbuilder.core.ExcludeResources">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="configIdPattern" value=".*" />
+			<simple-array name="filePatterns">
+				<element value=".*/$(socFpga.hwlibDir)/src/utils/alt_base.S" />
+				<element value=".*/$(socFpga.hwlibDir)/src/utils/alt_printf.c" />
+				<element value=".*/$(socFpga.hwlibDir)/src/hwmgr/alt_ethernet.c" />
+				<element value=".*/$(socFpga.hwlibDir)/src/hwmgr/alt_eth_phy_ksz9031.c" />
+				<element value=".*/$(socFpga.hwlibDir)/src/hwmgr/soc_a10/.*[.]c" />
+			</simple-array>
+			<simple name="invertConfigMatching" value="false" />
+		</process>
+	</if>
+	
+	<!--
+		Open a file in the editor.
+	-->
+	<if condition="$(socFpga.isOpenFile)==true">
+		<process type="org.eclipse.cdt.ui.OpenFiles">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="files">
+				<element>
+					<simple name="target" value="main.c" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+</template>

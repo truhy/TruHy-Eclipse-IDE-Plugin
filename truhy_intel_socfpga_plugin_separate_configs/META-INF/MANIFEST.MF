@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Template
+Bundle-SymbolicName: truhy.intel_socfpga.template;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.cdt.core
+Automatic-Module-Name: truhy.intel_socfpga.template
+Bundle-RequiredExecutionEnvironment: JavaSE-11
