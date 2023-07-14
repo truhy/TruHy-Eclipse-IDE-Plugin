@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+	Copyright (c) 2023 Truong Hy.
+-->
+
+<plugin>
+	<!--
+		If you want it selectable for only C project wizard then use filterPattern=".*gcc"
+		If you want it selectable for both C/C++ project wizard then use filterPattern=".*g[c\+][c\+]"
+	-->
+	<extension point="org.eclipse.cdt.core.templates">
+		<template
+			filterPattern=".*g[c\+][c\+]"
+			id="cdt.templates.socfpga.generic"
+			location="$nl$/templates/socfpga-generic-project/template.xml"
+			projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+		</template>
+	
+		<template
+			filterPattern=".*g[c\+][c\+]"
+			id="cdt.templates.socfpga.hello"
+			location="$nl$/templates/socfpga-hello-project/template.xml"
+			projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+		</template>
+	</extension>
+	
+		
+	<!-- Associate new template with ilg.gnuarmeclipse.managedbuild.cross.toolchain.base -->
+	<extension point="org.eclipse.cdt.core.templateAssociations">
+		<template id="cdt.templates.socfpga.generic">
+			<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.base">
+			</toolChain>
+		</template>
+	
+		<template id="cdt.templates.socfpga.hello">
+			<toolChain id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.base">
+			</toolChain>
+		</template>
+	</extension>
+</plugin>
