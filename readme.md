@@ -36,16 +36,17 @@ Plugin minimum requirements:
 - Open the source code plugin Eclipse IDE project from folder "truhy_intel_socfpga_plugin"
 - Open the source code feature Eclipse IDE project from folder "truhy_intel_socfpga_feature"
 
-## How to generate the plugin
+## How to export (build) the plugin
 
-After making your changes, you will need to generate the plugin, this will produce files that are installable (deployable).  Surprisingly, exporting from the plugin project as a deployable plugin is useless.  This is because in later versions of Eclipse IDE, plugins can only install from a P2 Equinox repository.
+After making your changes, you will need to export the plugin, this will produce files that are installable (deployable).  Surprisingly, exporting from the plugin project as a deployable plugin is useless.  This is because in later versions of Eclipse IDE, plugins can only install from a P2 Equinox repository.
 
 Steps to export a deployable plugin as a repository:
-1. In the feature project select from the menu "File/Export..."
-2. In the dialog, select "Deployable Features"
-3. Select your preferred destination
-4. Go to "Options" tab, check "Categorize repository" and browse the category.xml file
-5. Click "Finish" button
+1. Open both projects plugin & feature in Eclipse IDE
+2. In the feature project select from the menu "File/Export..."
+3. In the dialog, select "Deployable Features"
+4. Select your preferred destination
+5. Go to "Options" tab, check "Categorize repository" and browse the category.xml file
+6. Click "Finish" button
 
 ## Helpful references
 
