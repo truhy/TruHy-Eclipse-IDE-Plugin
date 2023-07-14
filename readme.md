@@ -6,11 +6,11 @@ An Eclipse IDE plugin to provide New Project Wizards for the "Intel Cyclone V So
 
 ## The folders
 
-| Folder                      | Description                        |
-| ----------------------------| ---------------------------------- |
-| truhy_intel_socfpga_plugin  | Plugin Eclipse IDE project         |
-| truhy_intel_socfpga_feature | Plugin Eclipse IDE feature project |
-| repository                  | Installable plugin                 |
+| Folder                      | Description                 |
+| ----------------------------| --------------------------- |
+| truhy_intel_socfpga_plugin  | Eclipse IDE plugin project  |
+| truhy_intel_socfpga_feature | Eclipse IDE feature project |
+| repository                  | A built installable plugin  |
 
 ## How to install the custom Eclipse IDE plugin
 
