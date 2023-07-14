@@ -6,11 +6,18 @@ An Eclipse IDE plugin to provide New Project Wizards for the "Intel Cyclone V So
 
 ## The folders
 
-| Folder                      | Description                 |
-| ----------------------------| --------------------------- |
-| truhy_intel_socfpga_plugin  | Eclipse IDE plugin project  |
-| truhy_intel_socfpga_feature | Eclipse IDE feature project |
-| repository                  | A built installable plugin  |
+| Folder                                      | Description                                            |
+| --------------------------------------------| ------------------------------------------------------ |
+| truhy_intel_socfpga_plugin                  | Eclipse IDE plugin project                             |
+| truhy_intel_socfpga_feature                 | Eclipse IDE feature project                            |
+| repository                                  | A built installable plugin                             |
+| truhy_intel_socfpga_plugin_separate_configs | Bad (due to CDT plugin bug) Eclipse IDE plugin project |
+
+Note:
+
+There seems to be a bug in the CDT template extension point "org.eclipse.cdt.managedbuilder.core.buildDefinitions" and "parent" attribute of "configuration" tag.  The bug causes the "parent" attribute to be regenerated from the value of the "id" attribute.  This prevents new plugins (via CDT xml templates) creating valid new custom build configurations, e.g. DebugBySemihosting and DebugByUART
+
+The bad project demonstrates this bug.
 
 ## How to install the custom Eclipse IDE plugin
 
@@ -35,6 +42,15 @@ Plugin minimum requirements:
 - Use the "Install New Software..." to install the "Eclipse Plug-in Development Environment" plugin.
 - Open the source code plugin Eclipse IDE project from folder "truhy_intel_socfpga_plugin"
 - Open the source code feature Eclipse IDE project from folder "truhy_intel_socfpga_feature"
+
+## How to debug (run) without installing the plugin
+
+1. From the menu select "Run/Debug Configurations..."
+2. Open tree of "Eclipse Application"
+3. Select the pre-made debug configuration "Debug Plugin Template"
+4. Click the "Debug" button
+
+A new window should appear, running a new instance of Eclipse IDE containing the plugin, now you can test it.
 
 ## How to export (build) the plugin
 
