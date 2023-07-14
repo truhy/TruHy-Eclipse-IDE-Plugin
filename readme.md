@@ -37,11 +37,11 @@ Plugin minimum requirements:
 
 ## How to edit the plugin source code
 
-- Download code as zip from Github, extract all to a folder of your choice
-- Go to Eclipse IDE website to find how to install "Eclipse IDE for Embedded C/C++ Developers"
-- Use the "Install New Software..." to install the "Eclipse Plug-in Development Environment" plugin.
-- Open the source code plugin Eclipse IDE project from folder "truhy_intel_socfpga_plugin"
-- Open the source code feature Eclipse IDE project from folder "truhy_intel_socfpga_feature"
+1. Download code as zip from Github, extract all to a folder of your choice
+2. Go to Eclipse IDE website to find how to install "Eclipse IDE for Embedded C/C++ Developers"
+3. Use the "Install New Software..." to install the "Eclipse Plug-in Development Environment" plugin.
+4. Open the source code plugin Eclipse IDE project from folder "truhy_intel_socfpga_plugin"
+5. Open the source code feature Eclipse IDE project from folder "truhy_intel_socfpga_feature"
 
 ## How to debug (run) without installing the plugin
 
