@@ -1,5 +1,5 @@
 /*
-	Version: 20230701
+	Version: 20230909
 	Target: Arm Cortex A9 on the DE10-Nano development board
 
 	Template main.
@@ -11,7 +11,7 @@
 	extern void initialise_monitor_handles(void);  // Reference function header from the external Semihosting library
 #endif
 
-void wait_forever(){
+void wait_forever(void){
 	DEBUG_PRINTF("DEBUG: Starting infinity loop"_NL);
 
 	volatile unsigned char i = 1;

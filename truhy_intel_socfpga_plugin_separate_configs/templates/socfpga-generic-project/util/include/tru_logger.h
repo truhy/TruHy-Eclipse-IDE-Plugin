@@ -26,8 +26,8 @@
 	Provides debug logging support for bare-metal program development.
 */
 
-#ifndef TRU_HWLIB_INC_TRU_LOGGER_H_
-#define TRU_HWLIB_INC_TRU_LOGGER_H_
+#ifndef TRU_LOGGER_H
+#define TRU_LOGGER_H
 
 #include <stdio.h>
 
@@ -43,4 +43,4 @@
 	#define DEBUG_PRINTF(str, ...) (void)0
 #endif
 
-#endif /* TRU_HWLIB_INC_TRU_LOGGER_H_ */
+#endif
