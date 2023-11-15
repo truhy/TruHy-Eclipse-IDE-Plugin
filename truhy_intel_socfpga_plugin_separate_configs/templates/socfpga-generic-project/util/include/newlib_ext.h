@@ -30,10 +30,10 @@
 	Added in debug print to HPS UART0.
 */
 
-#ifndef NEWLIB_EXT_H_
-#define NEWLIB_EXT_H_
+#ifndef NEWLIB_EXT_H
+#define NEWLIB_EXT_H
 
 // Set the base address to the UART controller you want to use for the debug printf
 #define TRU_PRINTF_UART_ADDR ALT_UART0_ADDR
 
-#endif /* NEWLIB_EXT_H_ */
+#endif
