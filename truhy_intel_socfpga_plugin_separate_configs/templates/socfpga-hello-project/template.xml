@@ -109,6 +109,15 @@
 			default="c"
 			mandatory="true"
 			persist="false" />
+			
+		<property
+			id="socFpga.naturePat"
+			label="NatureId wildcard pattern"
+			description="NatureId wildcard pattern"
+			hidden="true"
+			default="c"
+			mandatory="true"
+			persist="false" />
 
 		<property
 			id="socFpga.pluginTemplatesDir"
@@ -251,6 +260,14 @@
 			<simple name="natureString" value="org.eclipse.cdt.core.ccnature" />
 			<simple name="propertyName" value="socFpga.fileExtension" />
 			<simple name="propertyValue" value="cpp" />
+		</process>
+		
+		<!-- If ccnature (C++ nature) is selected then set user property socFpga.naturePat to * -->
+		<process type="org.eclipse.embedcdt.templates.core.SetPropertyIfHasNature">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="natureString" value="org.eclipse.cdt.core.ccnature" />
+			<simple name="propertyName" value="socFpga.naturePat" />
+			<simple name="propertyValue" value="*" />
 		</process>
 
 		<!-- Force add ccnature -->
@@ -448,7 +465,7 @@
 			<simple name="projectName" value="$(projectName)" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.defs" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.defs" />
 					<simple-array name="values">
 						<element value="soc_cv_av" />
 						<element value="CYCLONEV" />
@@ -468,7 +485,7 @@
 			<simple name="projectName" value="$(projectName)" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.include.paths" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.include.paths" />
 					<simple-array name="values">
 						<element value="&quot;${workspace_loc:/${ProjName}/bsp_generated}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/util/include}&quot;" />
@@ -541,7 +558,7 @@
 			<simple name="condition" value="" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.defs" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.defs" />
 					<simple-array name="values">
 						<element value="SEMIHOSTING" />
 					</simple-array>
@@ -609,7 +626,7 @@
 			<simple name="condition" value="" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.compiler.defs" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.defs" />
 					<simple-array name="values">
 						<element value="TRU_PRINTF_UART" />
 					</simple-array>
