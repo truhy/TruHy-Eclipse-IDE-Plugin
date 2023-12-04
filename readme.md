@@ -61,7 +61,7 @@ Steps to export a deployable plugin as a repository:
 2. In the feature project select from the menu "File/Export..."
 3. In the dialog, select "Deployable Features"
 4. Select your preferred destination
-5. Go to "Options" tab, check "Categorize repository" and browse the category.xml file
+5. Go to "Options" tab, check "Categorize repository" and browse the category.xml file so that the path is updated to your local drive
 6. Click "Finish" button
 
 ## Helpful references
