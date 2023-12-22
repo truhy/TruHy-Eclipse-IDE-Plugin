@@ -64,6 +64,11 @@ Steps to export a deployable plugin as a repository:
 5. Go to "Options" tab, check "Categorize repository" and browse the category.xml file so that the path is updated to your local drive
 6. Click "Finish" button
 
+*It is important the file location in step 5 is correct, currently Eclipse does not check whether the file exists, if not, it silently ignores it!  A bug?
+The problem with this is that the deployed plugin will not appear in the install dialog, because it does not have a category!!
+
+I have place a few images inside the images folder showing some of the steps.
+
 ## Helpful references
 
 Eclipse documentation:

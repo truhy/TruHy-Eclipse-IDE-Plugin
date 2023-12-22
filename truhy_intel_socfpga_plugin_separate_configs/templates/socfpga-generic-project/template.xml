@@ -527,7 +527,7 @@
 	</if>
 	
 	<!--
-		Set DebugBySemihosting specific options.
+		Set DebugSemihosting specific options.
 	-->
 	<if condition="1==1">
 		<process type="org.eclipse.embedcdt.templates.core.ConditionalSetMBSStringOptionValue">
@@ -595,7 +595,7 @@
 	</if>
 	
 	<!--
-		Set DebugByUART specific options.
+		Set DebugUART specific options.
 	-->
 	<if condition="1==1">
 		<process type="org.eclipse.embedcdt.templates.core.ConditionalSetMBSStringOptionValue">
