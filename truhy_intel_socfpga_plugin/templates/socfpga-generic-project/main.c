@@ -1,6 +1,6 @@
 /*
 	Version: 20230909
-	Target: Arm Cortex A9 on the DE10-Nano development board
+	Target: ARM Cortex-A9 on the DE10-Nano development board
 
 	Template main.
 */
