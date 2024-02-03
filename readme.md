@@ -19,7 +19,7 @@ There seems to be a bug in the CDT template extension point "org.eclipse.cdt.man
 
 The bad project demonstrates this bug.
 
-## How to install the custom Eclipse IDE plugin
+## How to install the pre-built custom Eclipse IDE plugin
 
 1. Visit [Eclipse IDE website](https://www.eclipse.org/downloads/) and download the installer and install "Eclipse IDE for Embedded C/C++ Developers"
 2. In Eclipse IDE, use the "Install New Software..." to install the plugin.
@@ -37,9 +37,11 @@ Plugin minimum requirements:
 
 ## How to edit the plugin source code
 
+You will need to install the "Eclipse Plug-in Development Environment" extension software to build the source code:
+
 1. Download code as zip from Github, extract all to a folder of your choice
 2. Go to Eclipse IDE website to find how to install "Eclipse IDE for Embedded C/C++ Developers"
-3. Use the "Install New Software..." to install the "Eclipse Plug-in Development Environment" plugin.
+3. Use the "Install New Software..." to install the "Eclipse Plugin Development Tools/Eclipse Plug-in Development Environment" software.
 4. Open the source code plugin Eclipse IDE project from folder "truhy_intel_socfpga_plugin"
 5. Open the source code feature Eclipse IDE project from folder "truhy_intel_socfpga_feature"
 
@@ -59,7 +61,7 @@ After making your changes, you will need to export the plugin, this will produce
 Steps to export a deployable plugin as a repository:
 1. Open both projects plugin & feature in Eclipse IDE
 2. In the feature project select from the menu "File/Export..."
-3. In the dialog, select "Deployable Features"
+3. In the dialog, select "Deployable features"
 4. Select your preferred destination
 5. Go to "Options" tab, check "Categorize repository" and browse the category.xml file so that the path is updated to your local drive
 6. Click "Finish" button
