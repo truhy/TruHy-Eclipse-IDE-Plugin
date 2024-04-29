@@ -72,22 +72,12 @@
 			persist="false" />
 			
 		<property
-			id="socFpga.bspGeneratedDir"
-			label="%socFpga.bspGeneratedDir.label"
-			description="%socFpga.bspGeneratedDir.description"
+			id="socFpga.bspDir"
+			label="%socFpga.bspDir.label"
+			description="%socFpga.bspDir.description"
 			hidden="true"
 			type="browsedir"
-			default="bsp_generated"
-			mandatory="true"
-			persist="false" />
-			
-		<property
-			id="socFpga.ubootSplFile"
-			label="%socFpga.ubootSplFile.label"
-			description="%socFpga.ubootSplFile.description"
-			hidden="true"
-			type="browse"
-			default="u-boot-spl-nocache"
+			default="bsp"
 			mandatory="true"
 			persist="false" />
 			
@@ -267,7 +257,7 @@
 			<simple name="projectName" value="$(projectName)" />
 			<simple name="natureString" value="org.eclipse.cdt.core.ccnature" />
 			<simple name="propertyName" value="socFpga.naturePat" />
-			<simple name="propertyValue" value="*" />
+			<simple name="propertyValue" value="c.*" />
 		</process>
 
 		<!-- Force add ccnature -->
@@ -297,7 +287,7 @@
 	</if>
 	
 	<!--
-		Copy entire bsp_generated folder.
+		Copy entire bsp folder.
 		The replaceable=false copies files as binary.
 	-->
 	<if condition="1==1">
@@ -307,8 +297,8 @@
 			<simple name="condition" value="" />
 			<complex-array name="folders">
 				<element>
-					<simple name="source" value="../socfpga-generic-project/$(socFpga.bspGeneratedDir)" />
-					<simple name="target" value="bsp_generated" />
+					<simple name="source" value="../socfpga-generic-project/$(socFpga.bspDir)" />
+					<simple name="target" value="bsp" />
 					<simple name="pattern" value=".*" />
 					<simple name="replaceable" value="false" />
 					<simple name="recursive" value="true" />
@@ -374,8 +364,8 @@
 				</element>
 				
 				<element>
-					<simple name="source" value="../socfpga-generic-project/$(socFpga.ubootSplFile)" />
-					<simple name="target" value="$(socFpga.ubootSplFile)" />
+					<simple name="source" value="../socfpga-generic-project/tru_config.h" />
+					<simple name="target" value="tru_config.h" />
 					<simple name="replaceable" value="false" />
 				</element>
 				
@@ -487,7 +477,8 @@
 				<element>
 					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.include.paths" />
 					<simple-array name="values">
-						<element value="&quot;${workspace_loc:/${ProjName}/bsp_generated}&quot;" />
+						<element value="&quot;${workspace_loc:/${ProjName}}&quot;" />
+						<element value="&quot;${workspace_loc:/${ProjName}/bsp}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/util/include}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/hwlib/include}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/hwlib/include/soc_cv_av}&quot;" />
@@ -507,7 +498,7 @@
 			<simple name="projectName" value="$(projectName)" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.scriptfile" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).linker.scriptfile" />
 					<simple-array name="values">
 						<element value="&quot;${workspace_loc:/${ProjName}/$(socFpga.ldScriptDstDir)/$(socFpga.ldScriptFile)}&quot;" />
 					</simple-array>
@@ -521,7 +512,7 @@
 			<simple name="projectName" value="$(projectName)" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.usenewlibnosys" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).linker.usenewlibnosys" />
 					<simple name="value" value="true" />
 					<simple name="path" value="" />
 				</element>
@@ -560,6 +551,7 @@
 				<element>
 					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.defs" />
 					<simple-array name="values">
+						<element value="DEBUG" />
 						<element value="SEMIHOSTING" />
 					</simple-array>
 					<simple name="path" value="" />
@@ -573,7 +565,7 @@
 			<simple name="condition" value="" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.libs" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).linker.libs" />
 					<simple-array name="values">
 						<element value="rdimon" />
 					</simple-array>
@@ -588,7 +580,7 @@
 			<simple name="condition" value="" />
 			<complex-array name="resourcePaths">
 				<element>
-					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.*.linker.other" />
+					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).linker.other" />
 					<simple name="value" value="--specs=rdimon.specs" />
 					<simple name="path" value="" />
 					<simple name="buildType" value="debugBySemihosting" />
@@ -628,7 +620,7 @@
 				<element>
 					<simple name="id" value="ilg.gnuarmeclipse.managedbuild.cross.option.$(socFpga.naturePat).compiler.defs" />
 					<simple-array name="values">
-						<element value="TRU_PRINTF_UART" />
+						<element value="DEBUG" />
 					</simple-array>
 					<simple name="path" value="" />
 					<simple name="buildType" value="debugByUart" />

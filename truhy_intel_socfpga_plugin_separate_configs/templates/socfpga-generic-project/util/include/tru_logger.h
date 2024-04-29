@@ -21,7 +21,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 
-	Version: 20230619
+	Version: 20240323
 
 	Provides debug logging support for bare-metal program development.
 */
@@ -29,18 +29,29 @@
 #ifndef TRU_LOGGER_H
 #define TRU_LOGGER_H
 
+#include "tru_config.h"
 #include <stdio.h>
 
-// Define a macro named _NL to select the correct line endings for different modes.  NL stands for NewLine
-#if defined(SEMIHOSTING)
-	#define _NL "\n"
-	#define DEBUG_PRINTF(str, ...) printf(str, ##__VA_ARGS__)
-#elif defined(TRU_PRINTF_UART)
-	#define _NL "\r\n"
-	#define DEBUG_PRINTF(str, ...) printf(str, ##__VA_ARGS__)
+#if defined(TRU_DEBUG_PRINT_LEVEL) && TRU_DEBUG_PRINT_LEVEL >= 3U
+
+	#define DEBUG_PRINTF(fmt, args...) fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, ##args)
+	#define DEBUG_PRINTF_PLAIN(fmt, args...) fprintf(stderr, fmt, ##args)
+
+#elif defined(TRU_DEBUG_PRINT_LEVEL) && TRU_DEBUG_PRINT_LEVEL >= 2U
+
+	#define DEBUG_PRINTF(fmt, args...) fprintf(stderr, "DEBUG: %d:%s(): " fmt, __LINE__, __func__, ##args)
+	#define DEBUG_PRINTF_PLAIN(fmt, args...) fprintf(stderr, fmt, ##args)
+
+#elif defined(TRU_DEBUG_PRINT_LEVEL) && TRU_DEBUG_PRINT_LEVEL >= 1U
+
+	#define DEBUG_PRINTF(fmt, args...) fprintf(stderr, "DEBUG: " fmt, ##args)
+	#define DEBUG_PRINTF_PLAIN(fmt, args...) fprintf(stderr, fmt, ##args)
+
 #else
-	#define _NL "\n"
-	#define DEBUG_PRINTF(str, ...) (void)0
+
+	#define DEBUG_PRINTF(fmt, args...)  // Do nothing
+	#define DEBUG_PRINTF_PLAIN(fmt, args...)  // Do nothing
+
 #endif
 
 #endif

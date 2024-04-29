@@ -1,5 +1,5 @@
 /*
-	Version: 20230909
+	Version: 20240428
 	Target: ARM Cortex-A9 on the DE10-Nano development board
 
 	Template main.
@@ -12,10 +12,8 @@
 #endif
 
 void wait_forever(void){
-	DEBUG_PRINTF("DEBUG: Starting infinity loop"_NL);
-
-	volatile unsigned char i = 1;
-	while(i);
+	DEBUG_PRINTF("Starting infinity loop\n");
+	while(1);
 }
 
 int main(int argc, char **argv){
