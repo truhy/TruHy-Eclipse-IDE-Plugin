@@ -21,7 +21,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 
-	Version: 20240428
+	Version: 20240505
 
 	Trulib configuration
  */
@@ -38,7 +38,7 @@
 #define TRU_USER_DEBUG_PRINT_LEVEL      1U
 #define TRU_USER_DEBUG_PRINT_UART       1U
 #define TRU_USER_REL_PRINT_LEVEL        0U
-#define TRU_USER_REL_PRINT_UART         0U
+#define TRU_USER_REL_PRINT_UART         1U
 #define TRU_USER_PRINT_UART_R_NL        1U
 
 

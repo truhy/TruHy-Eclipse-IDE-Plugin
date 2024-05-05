@@ -325,7 +325,7 @@
 	</if>
 	
 	<!--
-		Copy entire util folder.
+		Copy entire trulib folder.
 		The replaceable=false copies files as binary.
 	-->
 	<if condition="1==1">
@@ -335,8 +335,8 @@
 			<simple name="condition" value="" />
 			<complex-array name="folders">
 				<element>
-					<simple name="source" value="util" />
-					<simple name="target" value="util" />
+					<simple name="source" value="trulib" />
+					<simple name="target" value="trulib" />
 					<simple name="pattern" value=".*" />
 					<simple name="replaceable" value="false" />
 					<simple name="recursive" value="true" />
@@ -395,6 +395,12 @@
 				<element>
 					<simple name="source" value="openocd-gdb-debug.launch.txt" />
 					<simple name="target" value="$(projectName)-debug.launch" />
+					<simple name="replaceable" value="true" />
+				</element>
+				
+				<element>
+					<simple name="source" value="openocd-gdb-release.launch.txt" />
+					<simple name="target" value="$(projectName)-release.launch" />
 					<simple name="replaceable" value="true" />
 				</element>
 			</complex-array>
@@ -496,7 +502,7 @@
 					<simple-array name="values">
 						<element value="&quot;${workspace_loc:/${ProjName}}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/bsp}&quot;" />
-						<element value="&quot;${workspace_loc:/${ProjName}/util/include}&quot;" />
+						<element value="&quot;${workspace_loc:/${ProjName}/trulib/include}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/hwlib/include}&quot;" />
 						<element value="&quot;${workspace_loc:/${ProjName}/hwlib/include/soc_cv_av}&quot;" />
 					</simple-array>
